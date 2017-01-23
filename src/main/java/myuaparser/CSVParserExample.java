@@ -66,12 +66,12 @@ public class CSVParserExample {
 		List<String[]> records = new ArrayList<String[]>();
 	
 		// adding header record
-		records.add(new String[] { "Browser Name", "Browser Type", "Browser Version", "Browser Producer", "OS Name", "OS Producer", "OS Version", "OS Version Extension" });
+		records.add(new String[] { "Browser Type", "Browser Name", "Browser Version", "Browser Producer", "OS Name", "OS Producer", "OS Version" });
 	
 		Iterator<UserAgent> it = useragent.iterator();
 		while (it.hasNext()) {
 			UserAgent ua = it.next();
-			records.add(new String[] { ua.getBrowserName(),ua.getbrowserType(),ua.getbrowserVersion(),ua.getbrowserProducer(),ua.getosName(),ua.getosProducer(),ua.getosVersion(),ua.getosVersionExtension() });
+			records.add(new String[] { ua.getBrowserName(),ua.getbrowserType(),ua.getbrowserVersion(),ua.getbrowserProducer(),ua.getosName(),ua.getosProducer(),ua.getosVersion() });
 		}
 		return records;
 	}
