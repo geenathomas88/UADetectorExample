@@ -31,9 +31,11 @@ public class CSVParserExample {
 		
 		String[] line;
 		while ((line = reader.readNext()) != null) {
-			String ua4 = line[0];
-			
-			UserAgent ua = getUserAgent(parser.parse(ua4));
+			String uaString = line[0];
+			int noOfhits = Integer.parseInt(line[1]);
+			int noOfusers = Integer.parseInt(line[2]);
+			int noOforg = Integer.parseInt(line[3]);
+			UserAgent ua = getUserAgent(parser.parse(uaString),noOfhits,noOfusers,noOforg);
 			userAgents.add(ua);
 		}
 		List<String[]> data = toStringArray(userAgents);
@@ -44,7 +46,7 @@ public class CSVParserExample {
 		System.out.println("Done!!");
 	}
 
-	public static UserAgent getUserAgent(ReadableUserAgent agent){
+	public static UserAgent getUserAgent(ReadableUserAgent agent,int hits,int users,int org){
 		VersionNumber browserVersionNumber = agent.getVersionNumber();
 		OperatingSystem os = agent.getOperatingSystem();
 		VersionNumber osVersionNumber = os.getVersionNumber();
@@ -57,7 +59,7 @@ public class CSVParserExample {
 		String osProducer = os.getProducer();
 		String osVersion = osVersionNumber.toVersionString();
 		String osVersionExtension = osVersionNumber.getExtension();
-		UserAgent userAgent = new UserAgent(browserName, browserType, browserVersion, browserProducer, osName, osProducer, osVersion, osVersionExtension);
+		UserAgent userAgent = new UserAgent(browserName, browserType, browserVersion, browserProducer, osName, osProducer, osVersion, osVersionExtension,hits,users,org);
 		return userAgent;
 	}
 
@@ -66,12 +68,14 @@ public class CSVParserExample {
 		List<String[]> records = new ArrayList<String[]>();
 	
 		// adding header record
-		records.add(new String[] { "Browser Type", "Browser Name", "Browser Version", "Browser Producer", "OS Name", "OS Producer", "OS Version" });
-	
+		//records.add(new String[] { "Browser Type", "Browser Name", "Browser Version", "Browser Producer", "OS Name", "OS Producer", "OS Version" });
+		
+		records.add(new String[] { "Browser","Users","Org"});
 		Iterator<UserAgent> it = useragent.iterator();
 		while (it.hasNext()) {
 			UserAgent ua = it.next();
-			records.add(new String[] { ua.getBrowserName(),ua.getbrowserType(),ua.getbrowserVersion(),ua.getbrowserProducer(),ua.getosName(),ua.getosProducer(),ua.getosVersion() });
+			//records.add(new String[] { ua.getBrowserName(),ua.getbrowserType(),ua.getbrowserVersion(),ua.getbrowserProducer(),ua.getosName(),ua.getosProducer(),ua.getosVersion() });
+			records.add(new String[] { ua.getbrowserType()+" " +ua.getbrowserVersion(),ua.getusers(),ua.getorg() });
 		}
 		return records;
 	}

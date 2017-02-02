@@ -10,8 +10,11 @@ public class UserAgent {
 	private String osProducer;
 	private String osVersion;
 	private String osVersionExtension;
+	private int hits;
+	private int users;
+	private int org;
 	
-	public UserAgent(String browserName,String browserType,String browserVersion,String browserProducer,String osName,String osProducer,String osVersion,String osVersionExtension){
+	public UserAgent(String browserName,String browserType,String browserVersion,String browserProducer,String osName,String osProducer,String osVersion,String osVersionExtension,int hits,int users,int org){
 		this.browserName=browserName;
 		this.browserType=browserType;
 		this.browserVersion=browserVersion;
@@ -20,6 +23,9 @@ public class UserAgent {
 		this.osProducer=osProducer;
 		this.osVersion=osVersion;
 		this.osVersionExtension=osVersionExtension;
+		this.hits = hits;
+		this.users = users;
+		this.org = org;
 	}
 	public UserAgent() {
 		// TODO Auto-generated constructor stub
@@ -50,5 +56,14 @@ public class UserAgent {
 	}
 	public String getosVersionExtension(){
 		return osVersionExtension;
+	}
+	public String gethits(){
+		return Integer.toString(hits);
+	}
+	public String getusers(){
+		return Integer.toString(users);
+	}
+	public String getorg(){
+		return Integer.toString(org);
 	}
 }
