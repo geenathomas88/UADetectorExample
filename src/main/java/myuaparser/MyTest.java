@@ -36,23 +36,26 @@ public class MyTest {
         System.out.println("Browser type: " + agent.getType().getName());
         System.out.println("Browser name: " + agent.getName());
         VersionNumber browserVersion = agent.getVersionNumber();
-        System.out.println("Browser version: " + browserVersion.toVersionString());
+        System.out.println("Browser version: " + browserVersion.getMajor());
+        
+        
+        
        // System.out.println("Browser version major: " + browserVersion.getMajor());
         //System.out.println("Browser version minor: " + browserVersion.getMinor());
         //System.out.println("Browser version bug fix: " + browserVersion.getBugfix());
         //System.out.println("Browser version extension: " + browserVersion.getExtension());
-        System.out.println("Browser producer: " + agent.getProducer());
+//        System.out.println("Browser producer: " + agent.getProducer());
 
-        // operating system
-        OperatingSystem os = agent.getOperatingSystem();
-        System.out.println("\nOS Name: " + os.getName());
-        System.out.println("OS Producer: " + os.getProducer());
-        VersionNumber osVersion = os.getVersionNumber();
-        System.out.println("OS version: " + osVersion.toVersionString());
-        //System.out.println("OS version major: " + osVersion.getMajor());
-        //System.out.println("OS version minor: " + osVersion.getMinor());
-        //System.out.println("OS version bug fix: " + osVersion.getBugfix());
-        System.out.println("OS version extension: " + osVersion.getExtension());
+//        // operating system
+//        OperatingSystem os = agent.getOperatingSystem();
+//        System.out.println("\nOS Name: " + os.getName());
+//        System.out.println("OS Producer: " + os.getProducer());
+//        VersionNumber osVersion = os.getVersionNumber();
+//        System.out.println("OS version: " + osVersion.toVersionString());
+//        //System.out.println("OS version major: " + osVersion.getMajor());
+//        //System.out.println("OS version minor: " + osVersion.getMinor());
+//        //System.out.println("OS version bug fix: " + osVersion.getBugfix());
+//        System.out.println("OS version extension: " + osVersion.getExtension());
 
         // device category
         ReadableDeviceCategory device = agent.getDeviceCategory();
