@@ -28,18 +28,23 @@ public class MyParser {
 		String[] line;
 		Map<String, UA> UserAgentMap = new HashMap<String,UA>();
 		while ((line = reader.readNext()) != null) {
+			int newnoOfusers = 0;
+			int newnoOforg = 0;
+			int noOfusers = 0;
+			int noOforg = 0;
+			
 			String uaString = line[0];
 			
-			int noOfusers = Integer.parseInt(line[2]);
-			int noOforg = Integer.parseInt(line[3]);
+			noOfusers = Integer.parseInt(line[2]);
+			noOforg = Integer.parseInt(line[3]);
 			
 			//parser.parse(uaString);
 			String browser = parser.parse(uaString).getType().getName()+" "+parser.parse(uaString).getName()+" "+parser.parse(uaString).getVersionNumber().getMajor();
 			if(UserAgentMap.containsKey(browser)){
 				UA userAgentExisting = UserAgentMap.get(browser);
 				
-				int newnoOfusers = userAgentExisting.getusers() + noOfusers;
-				int newnoOforg = userAgentExisting.getusers() + noOforg;
+				newnoOfusers = userAgentExisting.getusers() + noOfusers;
+				newnoOforg = userAgentExisting.getorg() + noOforg;
 				UserAgentMap.remove(browser);
 				UA userAgent = new UA(browser, newnoOfusers, newnoOforg);
 				UserAgentMap.put(browser, userAgent);
@@ -70,7 +75,7 @@ public class MyParser {
 			Map.Entry me = (Map.Entry)it.next();
 			UA user = (UA) me.getValue();
 			
-			records.add(new String[] {user.getBrowser(), String.valueOf(user.getorg()),String.valueOf(user.getusers())});
+			records.add(new String[] {user.getBrowser(), String.valueOf(user.getusers()), String.valueOf(user.getorg())});
 		}
 		return records;
 	}

@@ -31,10 +31,13 @@ public class CSVParserExample {
 		
 		String[] line;
 		while ((line = reader.readNext()) != null) {
+			int noOfhits = 0;
+			int noOfusers = 0;
+			int noOforg = 0;
 			String uaString = line[0];
-			int noOfhits = Integer.parseInt(line[1]);
-			int noOfusers = Integer.parseInt(line[2]);
-			int noOforg = Integer.parseInt(line[3]);
+			noOfhits = Integer.parseInt(line[1]);
+			noOfusers = Integer.parseInt(line[2]);
+			noOforg = Integer.parseInt(line[3]);
 			UserAgent ua = getUserAgent(parser.parse(uaString),noOfhits,noOfusers,noOforg);
 			userAgents.add(ua);
 		}
